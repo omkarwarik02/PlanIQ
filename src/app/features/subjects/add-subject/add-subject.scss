@@ -1,0 +1,17 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height:100vh;
+}
+
+mat-card-content{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;   /* space between fields */
+}
+
+mat-form-field{
+    width: 100%;
+}

@@ -1,0 +1,24 @@
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <!-- Subject -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Subject </th>
+    <td mat-cell *matCellDef="let element"> {{element.subjectName}} </td>
+  </ng-container>
+
+  <!-- Difficulty -->
+  <ng-container matColumnDef="difficulty">
+    <th mat-header-cell *matHeaderCellDef> Difficulty </th>
+    <td mat-cell *matCellDef="let element"> {{element.difficulty}} </td>
+  </ng-container>
+
+  <!-- Hours -->
+  <ng-container matColumnDef="hoursPerDay">
+    <th mat-header-cell *matHeaderCellDef> Hours/Day </th>
+    <td mat-cell *matCellDef="let element"> {{element.hoursPerDay}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+</table>
