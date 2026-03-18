@@ -1,0 +1,37 @@
+
+<div class="container">
+<form [formGroup]="signUpForm" (ngSubmit)="onSubmit()" >
+    <div class="card">
+    <div class="heading">
+        <h1>Signup</h1>
+    </div>
+            <div class="flex flex-col md:flex-row">
+                <div class="w-full md:w-5/12 flex flex-col items-center justify-center gap-3 py-5">
+                    <div class="flex flex-col gap-2 name-field">
+    <label for="name">Name</label>
+    <input pInputText id="name" type="text" formControlName="name" />
+</div>
+                    <div class="flex flex-col gap-2 username-field">
+                        <label for="email">Username</label>
+                        <input pInputText id="email" type="text" formControlName="email" />
+                    </div>
+                    <div class="flex flex-col gap-2 password-field">
+                        <label for="password">Password</label>
+                        <input pInputText id="password" type="password"formControlName="password">
+                    </div>
+                    
+                </div>
+                
+                <div class="w-full md:w-5/12 flex items-center justify-center py-5 signUp-btn">
+                    <p-button label="Sign Up" icon="pi pi-user-plus" severity="success" class="w-full max-w-[17.35rem]" styleClass="w-full mx-auto" type="submit" />
+                </div>
+            </div>
+        </div>
+        </form>
+
+
+</div>
+
+
+
+

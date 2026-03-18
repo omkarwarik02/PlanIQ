@@ -1,0 +1,265 @@
+.section-1 {
+  background-image: radial-gradient(circle farthest-corner at 10% 20%, rgba(0,51,102,1) 0%, rgba(0,102,204,1) 49.5%, rgba(0,191,255,1) 90%);
+  height: 100vh;
+}
+
+.section-1 section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;  
+  height: 100%;
+  max-width: 1200px;
+  margin: 0 auto;   
+  padding: 0 40px;
+}
+
+.sec-1-text {
+  display: flex;
+  flex-direction: column;
+  max-width: 50%; 
+    margin-left: 10;  
+}
+.sec-2-text{
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    margin-top: 20px;
+    margin-left: 0;
+    
+   
+}
+
+
+.sec-1-img img {
+  width: 500px;
+  height: auto;
+}
+
+.section-1 h1 {
+  font-family: "Merriweather", serif;
+  font-weight: 700;
+  font-size: 90px;   /* bold heading */
+}
+
+.section-1 h2 {
+  font-family: "Merriweather", serif;
+  font-weight: 500;   /* medium */
+}
+
+.section-1 h3 {
+  font-family: "Merriweather", serif;
+  font-weight: 500;   /* normal / light */
+  margin-top: 15px;
+    font-size: 16px;   /* spacing you wanted */
+}
+
+
+///question section
+.question-sec{
+    background-color: #F7F0F0;
+  height: 100vh;
+}
+.question-sec section{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;             
+  width: 100%;
+  padding-top: 80px;
+}
+
+.highlight {
+  font-weight: 800;
+}
+.Q-sec-text h1{
+  font-family: "Merriweather", serif;
+  font-weight: 500;
+  font-size: 50px;
+  color: #281C59;
+  
+}
+.Q-sec-body{
+  
+  display: flex;
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
+  color: #281C59;
+  font-family: "Merriweather", serif;
+  font-size: 20px;
+  margin-top: 120px;
+  
+
+  border-radius: 16px;
+  padding: 25px;
+  background-color: #fff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); 
+  transition: 0.3s;
+
+  
+  
+}
+.Q-sec-body:hover{
+   transform: translateY(-8px);
+}
+.Q-sec-text{
+  padding-top: 80px;
+  
+}
+
+//2nd page
+
+
+
+.section-2 {
+  background-color: #F7F0F0;
+  height: 100vh;
+}
+
+.section-2 section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;             
+  width: 100%;
+  padding-top: 80px;
+}
+
+
+.sec-3-text {
+  text-align: center;
+}
+
+/* HEADING */
+.section-2 h1 {
+  font-family: "Merriweather", serif;
+  font-weight: 500;
+  font-size: 50px;
+  color: #281C59;
+}
+
+/* HIGHLIGHT */
+.highlight {
+  font-weight: 800;
+}
+
+
+.sec-images {
+  display: flex;
+  justify-content: center;
+  gap: 180px;
+  margin-top: 120px;
+}
+
+
+.card {
+  display: flex;
+  flex-direction: column;   /* stack image + text */
+  align-items: center;      /* center both */
+  text-align: center;
+  width: 300px;
+  
+
+  border-radius: 16px;
+  padding: 25px;
+  background-color: #fff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); 
+  transition: 0.3s;
+
+}
+
+/* IMAGE */
+.card img {
+  width: 200px;
+  height: auto;
+}
+
+/* TEXT */
+.card p {
+font-family: "Merriweather", serif;
+  margin-top: 15px;
+  font-size: 18px;
+  color: #281C59;
+  font-weight: 500;
+}
+.card:hover {
+  transform: translateY(-8px);
+}
+
+
+
+/* apply snap to each section */
+.main-container {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+}
+
+.section-1,
+.question-sec,
+.section-2,
+.end-section {
+  height: 100vh;
+  scroll-snap-align: start;
+}
+
+
+.end-section{
+  background-color: #F7F0F0;
+  height: 100vh;
+}
+.end-section section{
+   display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;             
+  width: 100%;
+  padding-top: 80px;
+}
+.end-sec-text h1{
+  font-family: "Merriweather", serif;
+  font-weight: 500;
+  font-size: 50px;
+  color: #281C59;
+}
+.end-sec-img{
+  margin-top: 120px;
+  width: auto;
+  height: 200px;
+
+}
+.end-sec-btm {
+  font-family: "Merriweather", serif;
+  margin-top: 120px;
+  font-weight: 100;
+  font-size: 20px;
+  color: #281C59;
+
+  border-bottom: 1px solid #281C59;
+  display: inline-block; 
+  padding-bottom: 5px; 
+}
+.start-btn {
+  background: linear-gradient(135deg, #2563eb, #3b82f6); /* blue shades */
+  color: #ffffff;
+  margin-top: 120px;
+  padding: 14px 34px;
+  font-size: 18px;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.35);
+}
+
+.start-btn:hover {
+  background: linear-gradient(135deg, #1d4ed8, #2563eb);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.5);
+}
+
+.start-btn:active {
+  transform: scale(0.97);
+}

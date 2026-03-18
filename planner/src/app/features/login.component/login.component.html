@@ -1,0 +1,95 @@
+
+
+<div class="container">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="card">
+      <div class="heading">
+        <h1>Login</h1>
+      </div>
+
+      <div class="flex flex-col md:flex-row">
+
+        <div class="w-full md:w-5/12 flex flex-col items-center justify-start gap-3 py-5">
+
+          <!-- Email Field -->
+          <div class="flex flex-col gap-2 email-field">
+            <label for="email">Email</label>         
+            <input
+              pInputText
+              id="email"
+              type="email"                          
+              formControlName="email"
+              [class.ng-invalid]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched"
+            />
+            
+            <small
+              class="text-red-500 block"
+              style="min-height: 1rem;"
+              [style.visibility]="loginForm.get('email')?.touched && loginForm.get('email')?.hasError('required') 
+                ? 'visible' : 'hidden'"
+            >Email is required</small>
+
+            <small
+              class="text-red-500 block"
+              style="min-height: 1rem;"
+              [style.visibility]="loginForm.get('email')?.touched && loginForm.get('email')?.hasError('email') 
+                ? 'visible' : 'hidden'"
+            >Enter a valid email</small>
+          </div>
+
+          <!-- Password Field -->
+          <div class="flex flex-col gap-2 password-field">
+            <label for="password">Password</label>
+            <input
+              pInputText
+              id="password"
+              type="password"
+              formControlName="password"
+              [class.ng-invalid]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
+            />
+
+            <small
+              class="text-red-500 block"
+              style="min-height: 1rem;"
+              [style.visibility]="loginForm.get('password')?.touched && loginForm.get('password')?.hasError('required') 
+                ? 'visible' : 'hidden'"
+            >Password is required</small>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="log-btn">
+            <p-button
+              [label]="isLoading ? 'Logging in...' : 'Login'"
+              icon="pi pi-user"
+              type="submit"
+              [disabled]="isLoading"
+              class="w-full max-w-[55rem]"
+              styleClass="w-full mx-auto"
+            />
+          </div>
+
+        </div>
+
+        <!-- Divider -->
+        <div class="w-full md:w-2/12">
+          <p-divider layout="horizontal" class="!flex md:!hidden" align="center">
+            <b>OR</b>
+          </p-divider>
+        </div>
+
+        <!-- Sign Up -->
+        <div class="w-full md:w-5/12 flex items-center justify-center py-5 signUp-btn">
+          <p-button
+            label="Sign Up"
+            icon="pi pi-user-plus"
+            severity="success"
+            class="w-full max-w-[17.35rem]"
+            styleClass="w-full mx-auto"
+            (click)="redirect()"
+          />
+        </div>
+
+      </div>
+    </div>
+  </form>
+</div>
