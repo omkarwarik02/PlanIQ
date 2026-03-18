@@ -1,44 +1,53 @@
 <div class="container">
+  <div class="card">
     
-<mat-card class="subject-card" appearance="outlined">
-  <mat-card-header>
-    <div mat-card-avatar class="heading"></div>
-    <mat-card-title>Add Subject</mat-card-title>
-  </mat-card-header>
+    <h2>Add Subject</h2>
 
-  <form [formGroup]="subjectForm">
+    <form [formGroup]="subjectForm" (ngSubmit)="addSubject()">
 
-  <mat-card-content>
+      <!-- Subject Name -->
+      <div class="field">
+        <label>Subject Name</label>
+        <input 
+          pInputText 
+          type="text" 
+          formControlName="subjectName" 
+          placeholder="Enter subject" 
+        />
+      </div>
 
-   <mat-form-field class="input-1">
-  <mat-label>Subject Name</mat-label>
-  <input matInput formControlName="subjectName">
-</mat-form-field>
+      <!-- Difficulty -->
+      <div class="field">
+        <label>Difficulty</label>
+        <p-select 
+          [options]="difficultyOptions"
+          formControlName="difficulty"
+          optionLabel="label"
+          optionValue="value"
+          placeholder="Select Difficulty"
+        ></p-select>
+      </div>
 
-<mat-form-field class="input-2">
-  <mat-label>Select</mat-label>
-  <mat-select formControlName="difficulty">
-    <mat-option value="easy">Easy</mat-option>
-    <mat-option value="medium">Medium</mat-option>
-    <mat-option value="hard">Hard</mat-option>
-  </mat-select>
-</mat-form-field>
+      <!-- Hours -->
+      <div class="field">
+        <label>Hours per Day</label>
+        <input 
+          pInputText 
+          type="number" 
+          formControlName="hoursPerDay" 
+          placeholder="Enter hours"
+        />
+      </div>
 
-<mat-form-field class="input-3">
-  <mat-label>Hours Needed</mat-label>
-  <input matInput type="number" formControlName="hoursPerDay">
-</mat-form-field>
+      <!-- Button -->
+      <button 
+        pButton 
+        type="submit" 
+        label="Add Subject"
+        [disabled]="subjectForm.invalid"
+      ></button>
 
-  </mat-card-content>
+    </form>
 
-  <mat-card-actions>
-    <button mat-raised-button color="primary" (click)="addSubjects()">
-      Add Subject
-    </button>
-  </mat-card-actions>
-
-  </form>
-
-</mat-card>
-
+  </div>
 </div>

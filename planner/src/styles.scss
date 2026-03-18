@@ -1,6 +1,6 @@
 /* Remove default browser spacing */
 body {
-background-image: radial-gradient( circle 476px at 54.8% 51.5%,  rgba(168,229,253,1) 0%, rgba(244,244,254,1) 42.3%, rgba(244,244,254,1) 100.2% );
+   background-color: #F7F0F0;
   margin: 0;
   padding: 0;
 }
@@ -10,4 +10,41 @@ background-image: radial-gradient( circle 476px at 54.8% 51.5%,  rgba(168,229,25
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+/* ===== PRIME NG DROPDOWN FULL WHITE FIX ===== */
+
+/* Panel background */
+.p-select-panel {
+  background-color: #ffffff !important;
+  border: 1px solid #f1f5f9 !important; /* soft border */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05) !important;
+}
+
+/* Items */
+.p-select-option {
+  background-color: #ffffff !important;
+  color: #1e293b !important;
+}
+
+/* Hover */
+.p-select-option:hover {
+  background-color: #eef2ff !important;
+}
+
+/* Selected */
+.p-select-option.p-highlight {
+  background-color: #6366f1 !important;
+  color: #ffffff !important;
+}
+
+/* Remove dark focus/active styles */
+.p-select-option:focus,
+.p-select-option:active {
+  background-color: #eef2ff !important;
+  color: #1e293b !important;
+}
+
+/* Remove any dark overlay effect */
+.p-overlay {
+  background: transparent !important;
 }
