@@ -1,9 +1,9 @@
 const express =require('express');
-const {addSubject} = require("../Controllers/subjectController");
+const {subjectController} = require("../Controllers/subjectController");
 
 
 const router =express.Router();
 
-router.post('/add',addSubject);
+router.post('/add',subjectController);
 
-export default router;
+module.exports = router;

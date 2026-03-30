@@ -2,11 +2,11 @@ const mongoose = require('mongoose');
 
 const subjectSchema = new mongoose.Schema({
     name:{
-        type:string,
+        type:String,
         required:true,
     },
     difficulty:{
-        type:string,
+        type:String,
         enum:["Easy","Medium","Hard"],
         required:true,
     },
@@ -16,4 +16,4 @@ const subjectSchema = new mongoose.Schema({
     }
 },{timestamps:true});
 
-export default mongoose.model("Subject",subjectSchema);
+module.exports = mongoose.model("Subject",subjectSchema);

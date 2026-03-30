@@ -1,6 +1,6 @@
-const {Subject} = require("../Models/Subject");
+const Subject = require("../Models/Subject");
 
-export const subjectController = async(req,res) =>{
+const subjectController = async(req,res) =>{
 
 
     try{
@@ -29,8 +29,9 @@ export const subjectController = async(req,res) =>{
 
     }catch(err){
         res.status(500).json({
-      error: error.message,
+      error: err.message,
         })
    
 }
 }
+module.exports = {subjectController}
