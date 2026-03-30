@@ -1,3 +1,4 @@
+const { error } = require("better-auth/api");
 const Subject = require("../Models/Subject");
 
 const subjectController = async(req,res) =>{
@@ -34,4 +35,18 @@ const subjectController = async(req,res) =>{
    
 }
 }
-module.exports = {subjectController}
+
+const getSubjectController = async(req,res) =>{
+    try{
+        const subjects = await Subject.find()
+
+        res.status(201).json({
+            subjects,
+        })
+    } catch(err) {
+        res.status(500).json({
+            error:err.message,
+        })
+    }
+}
+module.exports = {subjectController,getSubjectController}
