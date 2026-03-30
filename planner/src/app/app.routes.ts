@@ -7,11 +7,25 @@ import { Dashboard } from './features/dashboard/dashboard';
 import { HomeComponent } from './features/home.component/home.component';
 import { authGuard } from './guards/auth-guard';
 import { SubjectsComponent } from './features/subjects.component/subjects.component';
+import { ShellComponent } from './shell/shell.component/shell.component';
 export const routes: Routes = [
     {path:'',component:HomeComponent},
-    {path:'addSub',component:AddSubject,canActivate: [authGuard]},
     {path:'signup',component:SignUpComponent},
     {path:'login',component:LoginComponent},
     {path:'subjects',component:SubjectsComponent, canActivate:[authGuard]},
-    {path:'dashboard',component:Dashboard, canActivate:[authGuard]}
+    
+
+    {
+        path:'',
+        component:ShellComponent,
+        canActivate:[authGuard],
+        children:[
+            {path:'dashboard',component:Dashboard},
+            {path:'addSub',component:AddSubject}
+
+        ]
+    }
+
+
+
 ];
