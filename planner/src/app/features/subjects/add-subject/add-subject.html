@@ -11,9 +11,23 @@
   </div>
 
   <div class="create-sub-btn">
-    <p-button severity="info">Add Subject</p-button>
+    <p-button severity="info">Create Group</p-button>
   </div>
 
+</div>
+
+<div class="body">
+<div class="body-heading">
+<h2>Subjects</h2>
+<div class="line"></div>
+</div>
+<div class="card-grid">
+  <div class="sub-card" *ngFor="let subject of subjects">
+ <h3>{{ subject.name }}</h3>
+    <p>{{ subject.description }}</p>
+  </div>
+
+</div>
 </div>
 </div>
 

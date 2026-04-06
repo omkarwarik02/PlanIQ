@@ -1,6 +1,7 @@
 .header{
   margin-top: 0.5rem;
   font-size: 20px;
+    font-family: "Manrope", sans-serif;
 }
 .sub-headrer {
   display: flex;
@@ -19,4 +20,34 @@
   color: #0058BE;
  
 
+}
+.body{
+  margin-top: 2rem;
+ 
+}
+.body-heading{
+  display: flex;
+  font-size: 18px;
+   font-weight: bold;
+    font-family: "Manrope", sans-serif;
+    align-items: center;
+}
+.line{
+  flex: 3;
+  height: 1px;
+  background-color: #ccc;
+  margin-left: 10px;
+
+}
+.card-grid{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap:20px;
+    margin-top: 2rem;
+}
+.sub-card{
+  background: #fff;
+  padding:16px ;
+  border-radius: 12px;
+   box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
