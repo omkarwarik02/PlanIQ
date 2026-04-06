@@ -1,33 +1,70 @@
 <div class="container">
   <div class="header">
-<h1>My Curriculum</h1>
-</div>
-<div class="sub-headrer">
+    <h1>My Curriculum</h1>
+  </div>
+  <div class="sub-header">
+    <div class="text-content">
+      <small>Organize your academic journey. Select subjects to include</small>
+      <small>in your intelligent study plan and categorize them for better focus.</small>
+    </div>
+    <div class="header-actions">
+      <p-button label="Add Subject" icon="pi pi-plus" (onClick)="showDialog()"></p-button>
+      <p-button label="Create Group" severity="info"></p-button>
 
-  <div class="text-content">
-    <small>Organize your academic journey. Select subjects to include</small>
-    <small>in your intelligent study plan and categorize them for better</small>
-    <small>focus.</small>
+      <p-dialog
+        header="Add Subject"
+        [(visible)]="displayDialog"
+        [modal]="true"
+        [closable]="true"
+        [style]="{ width: '400px' }"
+      >
+        <div class="p-fluid">
+          <div class="field">
+            <label for="name">Subject Name</label>
+            <input id="name" type="text" pInputText [(ngModel)]="subject.name" placeholder="e.g. Mathematics" />
+          </div>
+          <div class="field">
+            <label for="difficulty">Difficulty</label>
+            <p-select 
+              id="difficulty"
+              [options]="difficultyOption" 
+              [(ngModel)]="subject.difficulty" 
+              optionLabel="label" 
+              optionValue="value" 
+              placeholder="Select Difficulty">
+            </p-select>
+          </div>
+          <div class="field">
+            <label for="hours">Study Hours</label>
+            <p-inputNumber 
+              id="hours"
+              [(ngModel)]="subject.hours" 
+              [min]="0" 
+              [max]="24"
+              suffix=" hours/day"
+              placeholder="0">
+            </p-inputNumber>
+          </div>
+        </div>
+        
+        <ng-template pTemplate="footer">
+          <p-button label="Cancel" icon="pi pi-times" (onClick)="displayDialog = false" severity="secondary" [text]="true"></p-button>
+          <p-button label="Save" icon="pi pi-check" (onClick)="saveSubject()" severity="primary"></p-button>
+        </ng-template>
+      </p-dialog>
+    </div>
   </div>
 
-  <div class="create-sub-btn">
-    <p-button severity="info">Create Group</p-button>
+  <div class="body">
+    <div class="body-heading">
+      <h2>Subjects</h2>
+      <div class="line"></div>
+    </div>
+    <div class="card-grid">
+      <div class="sub-card" *ngFor="let subject of subjects">
+        <h3>{{ subject.name }}</h3>
+        <p>{{ subject.description }}</p>
+      </div>
+    </div>
   </div>
-
 </div>
-
-<div class="body">
-<div class="body-heading">
-<h2>Subjects</h2>
-<div class="line"></div>
-</div>
-<div class="card-grid">
-  <div class="sub-card" *ngFor="let subject of subjects">
- <h3>{{ subject.name }}</h3>
-    <p>{{ subject.description }}</p>
-  </div>
-
-</div>
-</div>
-</div>
-

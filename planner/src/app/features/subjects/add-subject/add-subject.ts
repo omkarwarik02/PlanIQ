@@ -7,7 +7,7 @@ import { NgForOf } from "../../../../../node_modules/@angular/common/types/_comm
 import { CommonModule } from '@angular/common';
 import { DialogModule } from 'primeng/dialog';
 import { FormsModule } from '@angular/forms';
-import { AutoCompleteModule } from 'primeng/autocomplete';
+import { InputNumberModule } from 'primeng/inputnumber';
 interface Subject {
   name: string;
   difficulty: string;
@@ -17,11 +17,11 @@ interface Subject {
 @Component({
   selector: 'app-add-subject',
   standalone: true,
-  imports: [ReactiveFormsModule, InputTextModule, SelectModule, ButtonModule, CommonModule,DialogModule,FormsModule,AutoCompleteModule],
+  imports: [ReactiveFormsModule, InputTextModule, SelectModule, ButtonModule, CommonModule, DialogModule, FormsModule, InputNumberModule],
   templateUrl: './add-subject.html',
   styleUrl: './add-subject.scss'
 })
-export class AddSubject implements OnInit {
+export class AddSubject  {
   subjects = [
   {
     name: 'Data Structures',
@@ -85,8 +85,25 @@ export class AddSubject implements OnInit {
   },
 ];
 
- ngOnInit(): void {
-   
+displayDialog:boolean = false;
+
+subject={
+  name:'',
+  difficulty:null,
+  hours:null
+}
+
+difficultyOption =[
+  {label:'Easy',value:'easy'},
+   {label:'Medium',value:'medium'},
+    {label:'Hard',value:'hard'}
+]
+ showDialog(){
+  this.displayDialog = true;
+ }
+ saveSubject(){
+  console.log(this.subject);
+  this.displayDialog = false;
  }
  
 }

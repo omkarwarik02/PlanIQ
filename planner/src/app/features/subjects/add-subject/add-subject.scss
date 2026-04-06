@@ -1,53 +1,107 @@
-.header{
+.header {
   margin-top: 0.5rem;
   font-size: 20px;
-    font-family: "Manrope", sans-serif;
+  font-family: 'Manrope', sans-serif;
 }
-.sub-headrer {
+
+.sub-header {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;   /* keeps text top-aligned */
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .text-content small {
-  display: block;            
-  font-family: "Inter", sans-serif;
+  display: block;
+  font-family: 'Inter', sans-serif;
   font-size: 14px;
   font-weight: 300;
-  color: #64748B;
+  color: #64748b;
 }
-.create-sub-btn{
-  color: #0058BE;
- 
 
-}
-.body{
+.body {
   margin-top: 2rem;
- 
 }
-.body-heading{
+
+.body-heading {
   display: flex;
   font-size: 18px;
-   font-weight: bold;
-    font-family: "Manrope", sans-serif;
-    align-items: center;
+  font-weight: bold;
+  font-family: 'Manrope', sans-serif;
+  align-items: center;
 }
-.line{
+
+.line {
   flex: 3;
   height: 1px;
   background-color: #ccc;
   margin-left: 10px;
+}
 
-}
-.card-grid{
+.card-grid {
   display: grid;
-  grid-template-columns: repeat(2,1fr);
-  gap:20px;
-    margin-top: 2rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-top: 2rem;
 }
-.sub-card{
+
+.sub-card {
   background: #fff;
-  padding:16px ;
+  padding: 16px;
   border-radius: 12px;
-   box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Dialog Styling */
+:host ::ng-deep {
+  .p-dialog-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid #f1f5f9;
+
+    .p-dialog-title {
+      font-family: 'Manrope', sans-serif;
+      font-weight: 700;
+      color: #0f172a;
+    }
+  }
+
+  .p-dialog-content {
+    padding: 1.5rem;
+  }
+
+  .p-dialog-footer {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid #f1f5f9;
+  }
+
+  .p-fluid {
+    .field {
+      margin-bottom: 1.5rem;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+        font-size: 0.875rem;
+        color: #475569;
+        font-family: 'Inter', sans-serif;
+      }
+
+      input,
+      .p-select,
+      .p-inputnumber {
+        width: 100% !important;
+      }
+    }
+  }
 }
