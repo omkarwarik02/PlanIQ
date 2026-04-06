@@ -1,49 +1,93 @@
 <div class="layout-wrapper">
 
-  <p-toolbar class="layout-navbar">
-    <ng-template pTemplate="start">
-      <span class="app-logo">Plan<span class="app">IQ</span> </span>
-    </ng-template>
+  <aside class="layout-sidebar">
+    <div class="sidebar-header">
+      <div class="logo-container">
+        <div class="logo-icon">
+          <i class="pi pi-bolt"></i>
+        </div>
+        <div class="logo-text">
+          <h2 class="app-name">PlanIQ</h2>
+          <span class="sub-text">INTELLIGENT ATELIER</span>
+        </div>
+      </div>
+    </div>
 
-    <ng-template pTemplate="end">
-      <button class="logout-btn" (click)="logout()">
-        <i class="pi pi-sign-out"></i>
-        Logout
-      </button>
-    </ng-template>
-  </p-toolbar>
+    <nav class="sidebar-menu">
+      <a routerLink="/dashboard" routerLinkActive="active">
+        <i class="pi pi-home"></i>
+        <span>Dashboard</span>
+      </a>
+
+      <a routerLink="/subjects" routerLinkActive="active">
+        <i class="pi pi-tags"></i>
+        <span>Subjects</span>
+      </a>
+
+      <a routerLink="/study-plan" routerLinkActive="active">
+        <i class="pi pi-book"></i>
+        <span>Study Plan</span>
+      </a>
+      <a routerLink="/tasks" routerLinkActive="active">
+        <i class="pi pi-check-square"></i>
+        <span>Tasks</span>
+      </a>
+      <a routerLink="/progress" routerLinkActive="active">
+        <i class="pi pi-chart-line"></i>
+        <span>Progress</span>
+      </a>
+      <a routerLink="/ai-recommendations" routerLinkActive="active">
+        <i class="pi pi-sparkles"></i>
+        <span>AI Recommendations</span>
+      </a>
+      <a routerLink="/calendar" routerLinkActive="active">
+        <i class="pi pi-calendar"></i>
+        <span>Calendar</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="pro-card">
+        <h3>Upgrade to Pro</h3>
+        <p>Get unlimited access to all AI features and insights.</p>
+        <button class="upgrade-btn">Upgrade Now</button>
+      </div>
+
+      <a routerLink="/settings" class="settings-link" routerLinkActive="active">
+        <i class="pi pi-cog"></i>
+        <span>Settings</span>
+      </a>
+    </div>
+  </aside>
 
   <div class="layout-body">
-
-    <aside class="layout-sidebar">
-
-      <button class="add-btn">
-        <i class="pi pi-plus"></i>
-        Add Sub
-      </button>
-
-      <nav class="sidebar-menu">
-        <a routerLink="/dashboard" routerLinkActive="active">
-          <i class="pi pi-home"></i>
-          <span>Dashboard</span>
-        </a>
-
-        <a routerLink="/users" routerLinkActive="active">
-          <i class="pi pi-users"></i>
-          <span>Users</span>
-        </a>
-
-        <a routerLink="/settings" routerLinkActive="active">
-          <i class="pi pi-cog"></i>
-          <span>Settings</span>
-        </a>
-      </nav>
-
-    </aside>
+    <header class="layout-navbar">
+      <div class="navbar-content">
+        <div class="search-container">
+          <i class="pi pi-search"></i>
+          <input type="text" placeholder="Search tasks, subjects, or insights..." class="search-input">
+        </div>
+        <div class="navbar-actions">
+          <button class="icon-btn notification-btn">
+            <i class="pi pi-bell"></i>
+          </button>
+          <div class="user-profile">
+            <div class="user-avatar">
+              <img src="https://ui-avatars.com/api/?name=User&background=0066FF&color=fff" alt="User">
+            </div>
+          </div>
+          <button class="logout-btn" (click)="logout()">
+            <i class="pi pi-sign-out"></i>
+          </button>
+        </div>
+      </div>
+    </header>
 
     <main class="layout-content">
-      <router-outlet></router-outlet>
+      <div class="content-wrapper">
+        <router-outlet></router-outlet>
+      </div>
     </main>
-
   </div>
-</div>
+
+</div>

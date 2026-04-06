@@ -1,207 +1,22 @@
-/* Full page center */
-.container {
+.header{
+  margin-top: 0.5rem;
+  font-size: 20px;
+}
+.sub-headrer {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  font-family: "Merriweather", serif;
-  background: linear-gradient(135deg, #eef2ff, #f8fafc);
+  justify-content: space-between;
+  align-items: flex-start;   /* keeps text top-aligned */
 }
 
-/* Card */
-.card {
-  width: 400px;
-  padding: 30px;
-  border-radius: 16px;
-  background: #ffffff;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-  transition: transform 0.2s ease;
-}
-
-.card:hover {
-  transform: translateY(-3px);
-}
-
-/* Heading */
-.card h2 {
-  text-align: center;
-  margin-bottom: 20px;
-  color: #1e293b;
-  font-weight: 600;
-}
-
-/* Form fields */
-.field {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 18px;
-}
-
-/* Labels */
-.field label {
-  margin-bottom: 6px;
+.text-content small {
+  display: block;            
+  font-family: "Inter", sans-serif;
   font-size: 14px;
-  color: #475569;
-  font-weight: 500;
+  font-weight: 300;
+  color: #64748B;
 }
+.create-sub-btn{
+  color: #0058BE;
+ 
 
-/* INPUT FIELD - always white */
-input[pInputText],
-.p-inputtext {
-  width: 100%;
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #cbd5e1;
-  background-color: #ffffff !important;
-  color: #1e293b !important;
-  transition: border 0.2s ease;
-}
-
-/* Focus effect */
-input[pInputText]:focus,
-.p-inputtext:focus {
-  background-color: #ffffff !important;
-  color: #1e293b !important;
-  border-color: #6366f1;
-  outline: none;
-  box-shadow: none;
-}
-
-/* PrimeNG Select */
-.p-select {
-  width: 100%;
-  background-color: #ffffff !important;
-  border: 1px solid #cbd5e1;
-  border-radius: 8px;
-}
-
-/* Selected value label (FIXED) */
-.p-select .p-select-label {
-  color: #1e293b !important;
-}
-
-/* Focus state */
-.p-select.p-focus .p-select-label {
-  color: #1e293b !important;
-}
-
-/* Dropdown panel */
-.p-select-panel {
-  background-color: #ffffff !important;
-  color: #1e293b !important;
-  border-radius: 8px;
-}
-
-/* Options */
-.p-select-option {
-  color: #1e293b !important;
-  padding: 8px 12px;
-}
-
-/* Hover option */
-.p-select-option:hover {
-  background-color: #eef2ff !important;
-}
-
-/* Selected option inside dropdown */
-.p-select-option.p-highlight {
-  background-color: #6366f1 !important;
-  color: #ffffff !important;
-}
-
-/* Button */
-button[pButton] {
-  width: 100%;
-  margin-top: 10px;
-  border-radius: 10px;
-  font-weight: 500;
-}
-
-/* Disabled button */
-button[pButton]:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-/* FORCE selected text color inside p-select */
-
-/* Main label (selected value) */
-/* ================= PRIME NG SELECT FIX ================= */
-
-/* Use ng-deep to override PrimeNG styles */
-:host ::ng-deep .p-select {
-  width: 100%;
-  background-color: #ffffff !important;
-  border: 1px solid #cbd5e1;
-  border-radius: 8px;
-}
-
-/* Selected value text (MAIN FIX) */
-:host ::ng-deep .p-select-label {
-  color: #1e293b !important;
-}
-
-/* When value is selected */
-:host ::ng-deep .p-select.p-filled .p-select-label {
-  color: #1e293b !important;
-}
-
-/* Focus state */
-:host ::ng-deep .p-select.p-focus .p-select-label {
-  color: #1e293b !important;
-}
-
-/* Dropdown panel */
-:host ::ng-deep .p-select-panel {
-  background-color: #ffffff !important;
-}
-
-/* Options */
-:host ::ng-deep .p-select-option {
-  color: #1e293b !important;
-}
-
-/* Hover */
-:host ::ng-deep .p-select-option:hover {
-  background-color: #eef2ff !important;
-}
-
-/* Selected option */
-:host ::ng-deep .p-select-option.p-highlight {
-  background-color: #6366f1 !important;
-  color: #ffffff !important;
-}
-
-
-
-
-
-
-
-
-
-
-/* ================= DROPDOWN PANEL WHITE FIX ================= */
-
-/* Important: overlay panel (outside component) */
-:host ::ng-deep .p-select-panel {
-  background-color: #ffffff !important;
-  border: 1px solid #cbd5e1;
-  border-radius: 10px;
-}
-
-/* Dropdown items */
-:host ::ng-deep .p-select-option {
-  background-color: #ffffff !important;
-  color: #1e293b !important;
-}
-
-/* Hover effect */
-:host ::ng-deep .p-select-option:hover {
-  background-color: #eef2ff !important;
-}
-
-/* Selected option */
-:host ::ng-deep .p-select-option.p-highlight {
-  background-color: #6366f1 !important;
-  color: #ffffff !important;
 }

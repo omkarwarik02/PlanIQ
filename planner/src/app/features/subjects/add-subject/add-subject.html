@@ -1,53 +1,19 @@
 <div class="container">
-  <div class="card">
-    
-    <h2>Add Subject</h2>
-
-    <form [formGroup]="subjectForm" (ngSubmit)="addSubject()">
-
-      <!-- Subject Name -->
-      <div class="field">
-        <label>Subject Name</label>
-        <input 
-          pInputText 
-          type="text" 
-          formControlName="subjectName" 
-          placeholder="Enter subject" 
-        />
-      </div>
-
-      <!-- Difficulty -->
-      <div class="field">
-        <label>Difficulty</label>
-        <p-select 
-          [options]="difficultyOptions"
-          formControlName="difficulty"
-          optionLabel="label"
-          optionValue="value"
-          placeholder="Select Difficulty"
-        ></p-select>
-      </div>
-
-      <!-- Hours -->
-      <div class="field">
-        <label>Hours per Day</label>
-        <input 
-          pInputText 
-          type="number" 
-          formControlName="hoursPerDay" 
-          placeholder="Enter hours"
-        />
-      </div>
-
-      <!-- Button -->
-      <button 
-        pButton 
-        type="submit" 
-        label="Add Subject"
-        [disabled]="subjectForm.invalid"
-      ></button>
-
-    </form>
-
-  </div>
+  <div class="header">
+<h1>My Curriculum</h1>
 </div>
+<div class="sub-headrer">
+
+  <div class="text-content">
+    <small>Organize your academic journey. Select subjects to include</small>
+    <small>in your intelligent study plan and categorize them for better</small>
+    <small>focus.</small>
+  </div>
+
+  <div class="create-sub-btn">
+    <p-button severity="info">Add Subject</p-button>
+  </div>
+
+</div>
+</div>
+

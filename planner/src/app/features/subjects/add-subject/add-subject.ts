@@ -19,39 +19,7 @@ interface Subject {
 })
 export class AddSubject implements OnInit {
 
-  private fb = inject(FormBuilder);
-
-  subjectForm!: FormGroup;
-
-  subjects: Subject[] = [];
-
-  difficultyOptions = [
-    { label: 'Easy', value: 'Easy' },
-    { label: 'Medium', value: 'Medium' },
-    { label: 'Hard', value: 'Hard' }
-  ];
-
-  ngOnInit(): void {
-    this.subjectForm = this.fb.group({
-      subjectName: ['', Validators.required],
-      difficulty: [null, Validators.required],
-      hoursPerDay: [null, Validators.required]
-    });
-  }
-
-  addSubject() {
-    if (this.subjectForm.valid) {
-      const newSubject: Subject = {
-        name: this.subjectForm.value.subjectName,
-        difficulty: this.subjectForm.value.difficulty,
-        hoursPerDay: this.subjectForm.value.hoursPerDay
-      };
-
-      this.subjects.push(newSubject);
-
-      console.log(this.subjects);
-
-      this.subjectForm.reset();
-    }
-  }
+ ngOnInit(): void {
+   
+ }
 }
