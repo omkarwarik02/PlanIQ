@@ -1,5 +1,5 @@
 export interface SubjectModel {
-  name: string;
-  difficulty: string;
-  hoursPerDay: number;
+  name: string | null;
+  difficulty: string | null;
+  hours: number | null;
 }
