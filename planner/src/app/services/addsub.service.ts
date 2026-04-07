@@ -15,16 +15,16 @@ subjects = signal<SubjectModel[]>([]);
 
 
   addSubject(subject:SubjectModel) {
-    return this.http.post<SubjectModel>(`${this.API_URL}/api/subjects/add`, subject).pipe(
-      tap((saved:SubjectModel)=>{
-        this.subjects.update(current=>[...current,saved]);
+    return this.http.post<{message:String;subject:SubjectModel}>(`${this.API_URL}/api/subjects/add`, subject).pipe(
+      tap((res)=>{
+        this.subjects.update(current=>[...current,res.subject]);
       })
     );
   }
 
   getSubjects(){
-    return this.http.get<SubjectModel[]>(`${this.API_URL}/api/subjects-list/get`).pipe(
-      tap((data:SubjectModel[])=>this.subjects.set(data))
+  return this.http.get<{subjects:SubjectModel[]}>(`${this.API_URL}/api/subjects-list/get`).pipe(
+      tap((response) => this.subjects.set( response.subjects)) 
     )
   }
 }

@@ -3,11 +3,11 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { InputTextModule } from 'primeng/inputtext';
 import { SelectModule } from 'primeng/select';
 import { ButtonModule } from 'primeng/button';
-import { NgForOf } from "../../../../../node_modules/@angular/common/types/_common_module-chunk";
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgForOf } from '@angular/common';
 import { DialogModule } from 'primeng/dialog';
 import { FormsModule } from '@angular/forms';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { AddsubService } from '../../../services/addsub.service';
 interface Subject {
   name: string;
   difficulty: string;
@@ -21,71 +21,17 @@ interface Subject {
   templateUrl: './add-subject.html',
   styleUrl: './add-subject.scss'
 })
-export class AddSubject  {
-  subjects = [
-  {
-    name: 'Data Structures',
-    description: 'Practice arrays, linked list, trees',
-  },
-  {
-    name: 'DBMS',
-    description: 'Learn SQL and normalization',
-  },
-  {
-    name: 'Operating Systems',
-    description: 'Process, threads, scheduling',
-  },
-  {
-    name: 'Computer Networks',
-    description: 'OSI model and protocols',
-  },
-  {
-    name: 'Computer Networks',
-    description: 'OSI model and protocols',
-  },
-  {
-    name: 'Computer Networks',
-    description: 'OSI model and protocols',
-  },
-  {
-    name: 'Computer Networks',
-    description: 'OSI model and protocols',
-  },
-  {
-    name: 'Computer Networks',
-    description: 'OSI model and protocols',
-  },
-  {
-    name: 'Computer Networks',
-    description: 'OSI model and protocols',
-  },
-  {
-    name: 'Computer Networks',
-    description: 'OSI model and protocols',
-  },
-  {
-    name: 'Computer Networks',
-    description: 'OSI model and protocols',
-  },
-  {
-    name: 'Computer Networks',
-    description: 'OSI model and protocols',
-  },
-  {
-    name: 'Computer Networks',
-    description: 'OSI model and protocols',
-  },
-  {
-    name: 'Computer Networks',
-    description: 'OSI model and protocols',
-  },
-  {
-    name: 'Computer Networks',
-    description: 'OSI model and protocols',
-  },
-];
+export class AddSubject implements OnInit {
 
-displayDialog:boolean = false;
+  subjectService = inject(AddsubService)
+  
+  ngOnInit() {
+    this.subjectService.getSubjects().subscribe({
+      error: (err) => console.error('Failed to load subjects:', err)
+    });
+  }
+
+  displayDialog:boolean = false;
 
 subject={
   name:'',
@@ -102,8 +48,18 @@ difficultyOption =[
   this.displayDialog = true;
  }
  saveSubject(){
-  console.log(this.subject);
-  this.displayDialog = false;
+  if(!this.subject.name || !this.subject.difficulty || !this.subject.hours)return;
+  this.subjectService.addSubject({...this.subject}).subscribe({
+    next:()=>{
+      this.subject = { name: '', difficulty: null, hours: null };
+      console.log(this.subject);
+       this.displayDialog = false;
+    },
+    error:(err)=>{
+        console.error('Failed to save subject:', err);
+    }
+  })
+ 
  }
  
 }

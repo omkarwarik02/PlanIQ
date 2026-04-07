@@ -61,9 +61,9 @@
       <div class="line"></div>
     </div>
     <div class="card-grid">
-      <div class="sub-card" *ngFor="let subject of subjects">
+      <div class="sub-card" *ngFor="let subject of subjectService.subjects()">
         <h3>{{ subject.name }}</h3>
-        <p>{{ subject.description }}</p>
+        <p>Difficulty: {{ subject.difficulty }}<br/>Study Hours: {{ subject.hours }}</p>
       </div>
     </div>
   </div>
