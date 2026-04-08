@@ -20,6 +20,6 @@ const { toNodeHandler } = require("better-auth/node");
 
 app.use("/api/auth", toNodeHandler(auth));
 app.use("/api/subjects", subjectRoutes);
-app.use("/api/subjects-list",subjectRoutes);
+
 
 module.exports = app;

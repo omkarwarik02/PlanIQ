@@ -6,9 +6,9 @@ const subjectController = async(req,res) =>{
 
     try{
 
-         const {name,difficulty,totalHours} = req.body;
+         const {name,difficulty,hours} = req.body;
 
-    if(!name || !difficulty || !totalHours){
+    if(!name || !difficulty || !hours){
         return res.status(400).json({
             message:" All fields are empty"
         });
@@ -18,7 +18,7 @@ const subjectController = async(req,res) =>{
     const subject = new Subject({
         name,
         difficulty,
-        totalHours
+        hours
     })
     await subject.save();
 
@@ -49,4 +49,22 @@ const getSubjectController = async(req,res) =>{
         })
     }
 }
-module.exports = {subjectController,getSubjectController}
+
+const deleteSubjectController = async(req,res) => {
+    try{
+        const {id} = req.params;
+        const subject = await Subject.findByIdAndDelete(id);
+
+        if(!subject){
+            return res.status(404).json({message:'subject not found'});
+        }
+
+        res.status(201).json({message:"Subject deleted successfully"});
+
+
+
+    } catch(error){
+        res.status(500).json({error:err.message});
+    }
+}
+module.exports = {subjectController,getSubjectController,deleteSubjectController}

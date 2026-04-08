@@ -7,10 +7,10 @@ const subjectSchema = new mongoose.Schema({
     },
     difficulty:{
         type:String,
-        enum:["Easy","Medium","Hard"],
+        enum:["easy","medium","hard"],
         required:true,
     },
-    totalHours:{
+    hours:{
         type:Number,
         required:true
     }
