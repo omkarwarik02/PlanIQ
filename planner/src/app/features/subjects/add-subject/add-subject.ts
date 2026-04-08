@@ -8,11 +8,7 @@ import { DialogModule } from 'primeng/dialog';
 import { FormsModule } from '@angular/forms';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { AddsubService } from '../../../services/addsub.service';
-interface Subject {
-  name: string;
-  difficulty: string;
-  hoursPerDay: number;
-}
+
 
 @Component({
   selector: 'app-add-subject',
@@ -60,6 +56,12 @@ difficultyOption =[
     }
   })
  
+ }
+ deleteSubject(id:string){
+  this.subjectService.deleteSub(id).subscribe({
+    next: () => console.log('Subject deleted'),
+    error: (err) => console.error('Failed to delete subject:', err)
+  });
  }
  
 }

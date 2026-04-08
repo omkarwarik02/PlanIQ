@@ -64,6 +64,7 @@
       <div class="sub-card" *ngFor="let subject of subjectService.subjects()">
         <h3>{{ subject.name }}</h3>
         <p>Difficulty: {{ subject.difficulty }}<br/>Study Hours: {{ subject.hours }}</p>
+        <p-button  icon="pi pi-trash"(onClick)="deleteSubject(subject._id!)" severity="primary"></p-button>
       </div>
     </div>
   </div>

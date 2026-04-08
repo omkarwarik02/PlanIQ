@@ -27,4 +27,11 @@ subjects = signal<SubjectModel[]>([]);
       tap((response) => this.subjects.set( response.subjects)) 
     )
   }
+  deleteSub(id:string){
+    return this.http.delete<{message:string}>(`${this.API_URL}/api/subjects/delete/${id}`)
+    .pipe(
+      tap(()=>
+      this.subjects.update((curr)=> curr.filter((s)=>s._id !==id)))
+    )
+  }
 }
