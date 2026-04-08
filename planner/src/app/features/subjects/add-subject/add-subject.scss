@@ -56,6 +56,20 @@
   padding: 16px;
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sub-card-content {
+  h3 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+  }
+  p {
+    margin: 0;
+    color: #64748b;
+  }
 }
 
 /* Dialog Styling */
