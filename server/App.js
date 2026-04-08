@@ -4,6 +4,7 @@ const express = require("express");
 const cors = require("cors");
 const { auth } = require("./config/auth");
 const subjectRoutes = require("../server/Routes/subjectRoutes");
+const aiRoutes =require("./Routes/aiRoutes");
 const app = express();
 
 app.use(
@@ -21,5 +22,6 @@ const { toNodeHandler } = require("better-auth/node");
 app.use("/api/auth", toNodeHandler(auth));
 app.use("/api/subjects", subjectRoutes);
 app.use("/api/subjects-list",subjectRoutes);
+app.use("/api/ai",aiRoutes);
 
 module.exports = app;
