@@ -1,14 +1,14 @@
 require("dotenv").config();
-const { error } = require("better-auth/api");
+
 const ai = require("../config/ai");
 const Subject = require("../Models/Subject");
 
 
 const generatePlan = async(req,res)=>{
 
-
+try{
 const subjects = await Subject.find({user:req.user.id}); 
-if(!subjects || !subjects.length === 0){
+if(!subjects || subjects.length === 0){
    return res.status(500).json({message:"No subjects found"});
 }
 
@@ -35,7 +35,7 @@ Return ONLY a valid JSON object, no extra text, no markdown:
 Subjects:
 ${subjects.map(s => `- ${s.name} | Difficulty: ${s.difficulty} | Available: ${s.hours} hrs/day`).join("\n")}
 `;
-try{
+
     const response = await ai.models.generateContent({
         model:"gemini-2.5-flash",
         contents:prompt
@@ -101,6 +101,37 @@ ${subjects.map(s => `- ${s.name} | Difficulty: ${s.difficulty} | Available: ${s.
 
 
 
+const chat = async(req,res)=>{
+  const {message} = req.body;
+
+  if(!message){
+    return res.status(400).json({message:"message is required"});
+  }
+
+  //fetch subject using users id
+try{
+  const subjects =await Subject.find({user:req.user.id});
+  const subjectContext = subjects.length?`The Student is currently studying:${subjects.map(s=>s.name).join(",")}.`:"";
+
+      const prompt = `
+You are PlanIQ's academic assistant. Help students understand concepts, solve problems, and guide their studies.
+${subjectContext}
+Be concise, clear, and encouraging. Use simple language.
+
+Student asks: ${message}
+`;
+
+const response = await ai.models.generateContent({
+  model:"gemini-2.5-flash",
+  contents:prompt
+})
+  
+res.json({reply:response.text})
+}catch(err){
+     console.error("chat error:", err.message);
+    res.status(500).json({ error: "AI chat failed" })
+}
+}
 
 
 
@@ -111,4 +142,7 @@ ${subjects.map(s => `- ${s.name} | Difficulty: ${s.difficulty} | Available: ${s.
 
 
 
-module.exports ={generatePlan,generateTasks}
+
+
+
+module.exports ={generatePlan,generateTasks,chat}

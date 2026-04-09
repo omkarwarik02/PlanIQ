@@ -7,5 +7,6 @@ const {protect} = require("../Middlewares/authMiddleware");
 
 router.post("/generate-plan",protect,aiController.generatePlan);
 router.post("/generate-tasks",protect,aiController.generateTasks);
+router.post("/chat",protect,aiController.chat);
 
 module.exports = router;
