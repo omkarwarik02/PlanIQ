@@ -18,7 +18,8 @@ const subjectController = async(req,res) =>{
     const subject = new Subject({
         name,
         difficulty,
-        hours
+        hours,
+        user:req.user.id
     })
     await subject.save();
 
@@ -38,7 +39,7 @@ const subjectController = async(req,res) =>{
 
 const getSubjectController = async(req,res) =>{
     try{
-        const subjects = await Subject.find()
+        const subjects = await Subject.find({user:req.user.id})
 
         res.status(201).json({
             subjects,
@@ -53,7 +54,10 @@ const getSubjectController = async(req,res) =>{
 const deleteSubjectController = async(req,res) => {
     try{
         const {id} = req.params;
-        const subject = await Subject.findByIdAndDelete(id);
+        const subject = await Subject.findByIdAndDelete({
+            _id:id,
+            user:req.user.id
+        });
 
         if(!subject){
             return res.status(404).json({message:'subject not found'});

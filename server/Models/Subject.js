@@ -13,6 +13,10 @@ const subjectSchema = new mongoose.Schema({
     hours:{
         type:Number,
         required:true
+    },
+    user:{
+        type:String,
+        required:true
     }
 },{timestamps:true});
 

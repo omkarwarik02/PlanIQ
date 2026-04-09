@@ -1,10 +1,13 @@
 require("dotenv").config();
 const { error } = require("better-auth/api");
 const ai = require("../config/ai");
+const Subject = require("../Models/Subject");
+
 
 const generatePlan = async(req,res)=>{
-const {subjects} = req.body;
 
+
+const subjects = await Subject.find({user:req.user.id}); 
 if(!subjects || !subjects.length === 0){
    return res.status(500).json({message:"No subjects found"});
 }
