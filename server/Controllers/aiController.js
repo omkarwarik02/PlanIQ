@@ -50,6 +50,54 @@ try{
 }
 };
 
+const generateTasks = async(req,res)=>{
+try {
+    const subjects = await Subject.find({ user: req.user.id });
+
+    if (!subjects || subjects.length === 0) {
+      return res.status(400).json({ error: "No subjects found. Please add subjects first." });
+    }
+
+    const prompt = `
+You are a study task planner for PlanIQ.
+Generate specific, actionable study tasks for each subject below.
+Each subject should have 3-5 tasks based on its difficulty and available hours.
+
+Rules:
+- Hard subjects get more tasks and longer durations
+- Easy subjects get fewer, lighter tasks
+- Task types can be: reading, practice, revision, watch, exercise
+
+Return ONLY valid JSON, no extra text, no markdown:
+{
+  "tasksBySubject": [
+    {
+      "subject": "Physics",
+      "tasks": [
+        { "title": "Read Chapter 4", "duration": "30 mins", "type": "reading" }
+      ]
+    }
+  ]
+}
+
+Subjects:
+${subjects.map(s => `- ${s.name} | Difficulty: ${s.difficulty} | Available: ${s.hours} hrs/day`).join("\n")}
+`;
+
+    const response = await ai.models.generateContent({
+      model: "gemini-2.5-flash",
+      contents: prompt
+    });
+
+    const text = response.text;
+    const clean = text.replace(/```json|```/g, "").trim();
+    res.json(JSON.parse(clean));
+
+  } catch (err) {
+    console.error("generateTasks error:", err.message);
+    res.status(500).json({ error: "Failed to generate tasks" });
+  }
+}
 
 
 
@@ -62,4 +110,5 @@ try{
 
 
 
-module.exports ={generatePlan}
+
+module.exports ={generatePlan,generateTasks}
