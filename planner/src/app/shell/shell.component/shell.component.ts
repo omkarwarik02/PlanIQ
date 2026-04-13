@@ -10,7 +10,7 @@ import { Toolbar } from 'primeng/toolbar';
 @Component({
   selector: 'app-shell.component',
   standalone:true,
-  imports: [ToolbarModule, RouterOutlet,],
+  imports: [ToolbarModule, RouterOutlet,RouterLink,RouterLinkActive],
   templateUrl: './shell.component.html',
   styleUrl: './shell.component.scss',
 })

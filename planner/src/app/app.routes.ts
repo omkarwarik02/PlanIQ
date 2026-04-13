@@ -8,24 +8,23 @@ import { HomeComponent } from './features/home.component/home.component';
 import { authGuard } from './guards/auth-guard';
 import { SubjectsComponent } from './features/subjects.component/subjects.component';
 import { ShellComponent } from './shell/shell.component/shell.component';
+
+
+
+
 export const routes: Routes = [
-    {path:'',component:HomeComponent},
-    {path:'signup',component:SignUpComponent},
-    {path:'login',component:LoginComponent},
-    {path:'subjects',component:SubjectsComponent, canActivate:[authGuard]},
+  { path: '', component: HomeComponent },
+  { path: 'signup', component: SignUpComponent },
+  { path: 'login', component: LoginComponent },
+
+  {
+    path: '',
+    component: ShellComponent,
+    canActivate: [authGuard],
+    children: [
+      { path: 'dashboard', component: Dashboard },
+      { path: 'addSub', component: AddSubject },
     
-
-    {
-        path:'',
-        component:ShellComponent,
-        canActivate:[authGuard],
-        children:[
-            {path:'dashboard',component:Dashboard},
-            {path:'addSub',component:AddSubject}
-
-        ]
-    }
-
-
-
+    ]
+  }
 ];
