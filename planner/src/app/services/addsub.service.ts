@@ -15,7 +15,7 @@ subjects = signal<SubjectModel[]>([]);
 
 
   addSubject(subject:SubjectModel) {
-    return this.http.post<{message:String;subject:SubjectModel}>(`${this.API_URL}/api/subjects/add`, subject).pipe(
+    return this.http.post<{message:String;subject:SubjectModel}>(`${this.API_URL}/api/subjects/add`, subject,{withCredentials:true}).pipe(
       tap((res)=>{
         this.subjects.update(current=>[...current,res.subject]);
       })
@@ -28,7 +28,7 @@ subjects = signal<SubjectModel[]>([]);
     )
   }
   deleteSub(id:string){
-    return this.http.delete<{message:string}>(`${this.API_URL}/api/subjects/delete/${id}`)
+    return this.http.delete<{message:string}>(`${this.API_URL}/api/subjects/delete/${id}`,{withCredentials:true})
     .pipe(
       tap(()=>
       this.subjects.update((curr)=> curr.filter((s)=>s._id !==id)))
