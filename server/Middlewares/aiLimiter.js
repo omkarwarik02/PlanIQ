@@ -2,7 +2,7 @@ const User = require("../Models/User");
 const mongoose = require('mongoose');
 
 
-const DAILY_LIMIT = 2;
+const DAILY_LIMIT = 20;
 
 const getUsageCollection = () => mongoose.connection.collection('aiUsage');
 

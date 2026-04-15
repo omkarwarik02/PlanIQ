@@ -21,7 +21,7 @@ import { Router } from '@angular/router';
 })
 export class AddSubject implements OnInit {
 
-  private subjectService = inject(AddsubService);
+  subjectService = inject(AddsubService);
   private aiService = inject(AiService);
   private router = inject(Router);
   
