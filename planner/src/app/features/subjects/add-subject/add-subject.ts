@@ -8,6 +8,8 @@ import { DialogModule } from 'primeng/dialog';
 import { FormsModule } from '@angular/forms';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { AddsubService } from '../../../services/addsub.service';
+import { AiService } from '../../../services/ai.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -19,7 +21,10 @@ import { AddsubService } from '../../../services/addsub.service';
 })
 export class AddSubject implements OnInit {
 
-  subjectService = inject(AddsubService)
+  private subjectService = inject(AddsubService);
+  private aiService = inject(AiService);
+  private router = inject(Router);
+  
   
   ngOnInit() {
     this.subjectService.getSubjects().subscribe({
@@ -63,5 +68,14 @@ difficultyOption =[
     error: (err) => console.error('Failed to delete subject:', err)
   });
  }
+
+ generateplan(){
+  this.aiService.generatePlan().subscribe({
+    next:()=>{
+     this.router.navigate(['/study-plan']);
+    }
+  })
+ }
+ 
  
 }
