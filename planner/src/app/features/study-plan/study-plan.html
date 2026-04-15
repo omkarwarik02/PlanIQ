@@ -1,21 +1,39 @@
-<p-table [value]="tableRows()">
-  <ng-template pTemplate="header">
-    <tr>
-      <th>Day</th>
-      <th>Subject</th>
-      <th>Duration</th>
-      <th>Focus</th>
-    </tr>
-  </ng-template>
+<div class="plan-wrapper">
+  <div class="table-container">
+    <p-table [value]="tableRows()" styleClass="p-datatable-lg">
+      <ng-template pTemplate="header">
+        <tr>
+          <th style="width: 15%">Day</th>
+          <th style="width: 25%">Subject</th>
+          <th style="width: 15%">Duration</th>
+          <th style="width: 45%">Focus</th>
+        </tr>
+      </ng-template>
 
-  <ng-template pTemplate="body" let-row>
-    <tr>
-      <td *ngIf="row.isFirst" [attr.rowspan]="row.rowspan">
-        {{ row.day }}
-      </td>
-      <td>{{ row.subject }}</td>
-      <td>{{ row.duration }}</td>
-      <td>{{ row.focus }}</td>
-    </tr>
-  </ng-template>
-</p-table>
+      <ng-template pTemplate="body" let-row>
+        <tr [ngClass]="{'day-start': row.isFirst}">
+          <td *ngIf="row.isFirst" [attr.rowspan]="row.rowspan" class="day-cell">
+            <div class="day-wrapper">
+              {{ row.day }}
+            </div>
+          </td>
+          <td class="subject-cell">
+            <strong>{{ row.subject }}</strong>
+          </td>
+          <td class="duration-cell">
+            <span class="duration-badge">{{ row.duration }}</span>
+          </td>
+          <td class="focus-cell">{{ row.focus }}</td>
+        </tr>
+      </ng-template>
+      
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="4" class="empty-message-cell">
+            Generating your customized study plan...
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
