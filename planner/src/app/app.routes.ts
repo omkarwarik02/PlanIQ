@@ -9,6 +9,7 @@ import { authGuard } from './guards/auth-guard';
 import { SubjectsComponent } from './features/subjects.component/subjects.component';
 import { ShellComponent } from './shell/shell.component/shell.component';
 import { StudyPlan } from './features/study-plan/study-plan';
+import { TasksComponent } from './features/tasks-component/tasks-component';
 
 
 
@@ -25,7 +26,8 @@ export const routes: Routes = [
     children: [
       { path: 'dashboard', component: Dashboard },
       { path: 'addSub', component: AddSubject },
-      {path:'study-plan',component:StudyPlan}
+      {path:'study-plan',component:StudyPlan},
+      {path:'tasks',component:TasksComponent}
     
     ]
   }
