@@ -1,0 +1,55 @@
+.body {
+  margin-top: 2rem;
+}
+.header{
+margin-top: 0.5rem;
+  font-size: 20px;
+  font-family: 'Manrope', sans-serif;
+}
+.sub-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom:2rem;
+}
+.text-content small{
+    display: block;
+      font-family: 'Inter', sans-serif;
+       font-size: 14px;
+       font-weight: 300;
+       color: #64748b;
+}
+.body-heading{
+    display: flex;
+    font-family: 'Manrope', sans-serif;
+      font-size: 18px;
+  font-weight: bold;
+  align-items: center;
+}
+.line {
+  flex: 3;
+  height: 1px;
+  background-color: #ccc;
+  margin-left: 10px;
+}
+.header-actions{
+    align-items: center;
+}
+.card-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(660px,1fr));
+    gap: 1em;
+    margin-top: 2rem;
+}
+.sub-card{
+     color: #64748b;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 1.25rem;
+  height: 100px;
+  display: flex;
+  align-items: center;
+   justify-content: space-between;
+
+}

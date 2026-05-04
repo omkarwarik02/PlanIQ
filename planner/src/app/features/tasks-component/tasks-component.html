@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="header">
+    <h1>My Tasks</h1>
+  </div>
+  <div class="sub-header">
+    <div class="text-content">
+      <small>Manage your daily tasks. Track what's</small>
+      <small>done and stay in schedule.</small>
+    </div>
+    <div class="header-actions">
+      <p-button label="Generate Tasks" icon=" pi pi-bolt"></p-button>
+    </div>
+  </div>
+
+
+
+
+  <div class="body">
+    <div class="body-heading">
+      <h2>Tasks</h2>
+      <div class="line"></div>
+    </div>
+
+    <div class="card-grid">
+      <div class="sub-card">
+        <div class="card-content-left">
+          <p-checkbox [(ngModel)]="isChecked" [binary]="true" [disabled]="isChecked" (onChange)="onCheckboxChange($event)" />
+        </div>
+        <div class="card-content">
+            <h3>English</h3>
+        </div>
+        <div class="card-content-right">
+          <div class="delete-btn">
+
+            <i class="pi pi-trash" style="color: #ef4444; cursor: pointer;" (click)="deleteTask()"></i>
+          </div>
+        </div>
+      </div>
+      <div class="sub-card"></div>
+      <div class="sub-card"></div>
+    </div>
+
+  </div>
+</div>
