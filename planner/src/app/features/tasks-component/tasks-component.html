@@ -22,12 +22,12 @@
     </div>
 
     <div class="card-grid">
-      <div class="sub-card">
+      <div class="sub-card" *ngFor="let task of alltasks()">
         <div class="card-content-left">
-          <p-checkbox [(ngModel)]="isChecked" [binary]="true" [disabled]="isChecked" (onChange)="onCheckboxChange($event)" />
+          <p-checkbox [(ngModel)]="task.isCompleted" [binary]="true" [disabled]="task.isCompleted" (onChange)="onCheckboxChange($event)" />
         </div>
         <div class="card-content">
-            <h3>English</h3>
+            <h3>{{task.title}}</h3>
         </div>
         <div class="card-content-right">
           <div class="delete-btn">

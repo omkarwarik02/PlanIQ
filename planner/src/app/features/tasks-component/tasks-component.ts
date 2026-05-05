@@ -3,10 +3,10 @@ import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { CheckboxModule } from 'primeng/checkbox';
 import { AiTask } from '../../services/ai-task';
-FormsModule
+import { CommonModule, NgForOf } from '@angular/common';
 @Component({
   selector: 'app-tasks-component',
-  imports: [ButtonModule,CheckboxModule,FormsModule],
+  imports: [ButtonModule, CheckboxModule, FormsModule, NgForOf,CommonModule],
   templateUrl: './tasks-component.html',
   styleUrl: './tasks-component.scss',
 })
@@ -30,6 +30,7 @@ export class TasksComponent {
   alltasks = computed(() => this.tasks().flatMap(g=>g.tasks));
 
   generateTasks(){
+    
     this.isLoading.set(true);
     this.aiTask.generateTasks().subscribe({
       next:() =>{
