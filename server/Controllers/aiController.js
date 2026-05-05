@@ -52,6 +52,7 @@ ${subjects.map(s => `- ${s.name} | Difficulty: ${s.difficulty} | Available: ${s.
 
 const generateTasks = async(req,res)=>{
 try {
+   console.log("KEY:", process.env.GEMINI_API_KEY); //
     const subjects = await Subject.find({ user: req.user.id });
 
     if (!subjects || subjects.length === 0) {
