@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component,inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { CheckboxModule } from 'primeng/checkbox';
+import { AiTask } from '../../services/ai-task';
 FormsModule
 @Component({
   selector: 'app-tasks-component',
@@ -10,6 +11,7 @@ FormsModule
   styleUrl: './tasks-component.scss',
 })
 export class TasksComponent {
+  private aiTask = inject(AiTask);
   isChecked: boolean = false;
 
 
@@ -18,5 +20,13 @@ export class TasksComponent {
   }
   deleteTask(){
     
+  }
+
+  generateTasks(){
+    this.aiTask.generateTasks().subscribe({
+      next:() =>{
+        console.log("Task Created");
+      }
+    })
   }
 }
