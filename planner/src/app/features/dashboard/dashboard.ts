@@ -22,8 +22,9 @@ export class Dashboard implements OnInit {
 
   totalSubjects = computed(() => this.subjects().length);
   totalHours = computed(() => this.subjects().reduce((total, s) => total + (s.hours ?? 0), 0));
-
+  totaltasks = computed(() => this.tasks().flatMap(g=>g.tasks).length);
   ngOnInit() {
     this.subjectService.getSubjects().subscribe();
+    
   }
 }
