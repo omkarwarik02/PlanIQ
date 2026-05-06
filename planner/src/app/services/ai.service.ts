@@ -3,12 +3,15 @@ import { Injectable, inject, signal } from '@angular/core';
 import { tap, catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { DayPlan } from '../interface/plan.model';
+import { AiUsage } from './ai-usage';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AiService {
   private http = inject(HttpClient);
+
+  private aiUsage = inject(AiUsage);
   private API_URL = 'http://localhost:3000/api/ai';
 
   private _plan = signal<DayPlan[]>(this.loadFromStorage());
@@ -20,6 +23,8 @@ export class AiService {
         const planData = data?.plan || (Array.isArray(data) ? data : []);
         this._plan.set(planData);
         localStorage.setItem('planiq_plan', JSON.stringify(planData));
+
+        this.aiUsage.increment();
       }),
       catchError(err => {
         const message = err.error?.message ?? 'Failed to generate plan';

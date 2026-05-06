@@ -3,11 +3,14 @@ import { Injectable,inject, signal } from '@angular/core';
 import { TasksBySubject } from '../interface/task.model';
 import { tap, catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
+import { AiUsage } from './ai-usage';
 @Injectable({
   providedIn: 'root',
 })
 export class AiTask {
   private http = inject(HttpClient);
+
+  private aiUsage = inject(AiUsage); 
   private API_URL ='http://localhost:3000/api/ai';
 
   private _tasks = signal<TasksBySubject[]>(this.loadFromStorage());
@@ -25,6 +28,7 @@ export class AiTask {
         this._tasks.set(taskData);
         localStorage.setItem('planiq_tasks',JSON.stringify(taskData));
 
+        this.aiUsage.increment();
       }),
        catchError(err => {
         const message = err.error?.message ?? 'Failed to generate tasks';
