@@ -37,7 +37,7 @@ ${subjects.map(s => `- ${s.name} | Difficulty: ${s.difficulty} | Available: ${s.
 `;
 
     const response = await ai.models.generateContent({
-        model:"gemini-2.5-flash",
+        model:"gemini-1.5-flash",
         contents:prompt
     });
     const text = response .text;
@@ -86,7 +86,7 @@ ${subjects.map(s => `- ${s.name} | Difficulty: ${s.difficulty} | Available: ${s.
 `;
 
     const response = await ai.models.generateContent({
-      model: "gemini-2.5-flash",
+      model: "gemini-1.5-flash",
       contents: prompt
     });
 
@@ -123,7 +123,7 @@ Student asks: ${message}
 `;
 
 const response = await ai.models.generateContent({
-  model:"gemini-2.5-flash",
+  model:"gemini-1.5-flash",
   contents:prompt
 })
   
