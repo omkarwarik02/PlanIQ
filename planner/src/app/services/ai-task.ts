@@ -37,9 +37,27 @@ export class AiTask {
     );
   }
 
-  deleteTask(taskToDelete: any) {
+  markCompleted(subject: string, title: string) {
+    const updated = this._tasks().map(group => ({
+      ...group,
+      tasks: group.tasks.map(t =>
+        group.subject === subject && t.title === title
+          ? { ...t, isCompleted: true }
+          : t
+      )
+    }));
+    this._tasks.set(updated);
+    localStorage.setItem('planiq_tasks', JSON.stringify(updated));
+  }
+
+  deleteTask(taskToDelete: { subject: string; title: string }) {
     const updated = this._tasks()
-      .map(group => ({ ...group, tasks: group.tasks.filter(t => t !== taskToDelete) }))
+      .map(group => ({
+        ...group,
+        tasks: group.tasks.filter(t =>
+          !(group.subject === taskToDelete.subject && t.title === taskToDelete.title)
+        )
+      }))
       .filter(group => group.tasks.length > 0);
     this._tasks.set(updated);
     localStorage.setItem('planiq_tasks', JSON.stringify(updated));

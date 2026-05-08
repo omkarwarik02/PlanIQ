@@ -29,11 +29,7 @@ export class TasksComponent {
   remainingCount = computed(() => this.alltasks().length - this.completedCount());
 
   onCheckboxChange(task: TaskWithSubject) {
-    const groups = this.tasks().map(g => ({
-      ...g,
-      tasks: g.tasks.map(t => t === task ? { ...t, isCompleted: true } : t)
-    }));
-    localStorage.setItem('planiq_tasks', JSON.stringify(groups));
+    this.aiTask.markCompleted(task.subject, task.title);
   }
 
   deleteTask(task: TaskWithSubject) {

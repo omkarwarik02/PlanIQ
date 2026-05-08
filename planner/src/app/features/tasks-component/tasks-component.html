@@ -32,7 +32,7 @@
     <div class="card-grid" *ngIf="alltasks().length > 0">
       <div class="sub-card" *ngFor="let task of alltasks()" [class.completed]="task.isCompleted">
         <div class="card-content-left">
-          <p-checkbox [(ngModel)]="task.isCompleted" [binary]="true" [disabled]="task.isCompleted" (onChange)="onCheckboxChange(task)" />
+          <p-checkbox [ngModel]="task.isCompleted" [binary]="true" [disabled]="task.isCompleted" (onChange)="onCheckboxChange(task)" />
         </div>
         <div class="card-content">
           <h3 [class.strikethrough]="task.isCompleted">{{ task.title }}</h3>
