@@ -25,7 +25,14 @@ export class Dashboard implements OnInit {
 
   totalSubjects = computed(() => this.subjects().length);
   totalHours = computed(() => this.subjects().reduce((total, s) => total + (s.hours ?? 0), 0));
-  totaltasks = computed(() => this.tasks().flatMap(g=>g.tasks).length);
+
+  private allTasks = computed(() => this.tasks().flatMap(g => g.tasks));
+  totaltasks = computed(() => this.allTasks().length);
+  completedTasks = computed(() => this.allTasks().filter(t => t.isCompleted).length);
+  remainingTasks = computed(() => this.totaltasks() - this.completedTasks());
+  completionPercent = computed(() =>
+    this.totaltasks() === 0 ? 0 : Math.round((this.completedTasks() / this.totaltasks()) * 100)
+  );
   ngOnInit() {
     this.subjectService.getSubjects().subscribe();
     this.aiUsage.usage();

@@ -8,12 +8,9 @@
       <small>done and stay in schedule.</small>
     </div>
     <div class="header-actions">
-      <p-button label="Generate Tasks" icon=" pi pi-bolt"(click)="generateTasks()"></p-button>
+      <p-button label="Generate Tasks" icon="pi pi-bolt" [loading]="isLoading()" (click)="generateTasks()"></p-button>
     </div>
   </div>
-
-
-
 
   <div class="body">
     <div class="body-heading">
@@ -21,24 +18,34 @@
       <div class="line"></div>
     </div>
 
-    <div class="card-grid">
-      <div class="sub-card" *ngFor="let task of alltasks()">
-        <div class="card-content-left">
-          <p-checkbox [(ngModel)]="task.isCompleted" [binary]="true" [disabled]="task.isCompleted" (onChange)="onCheckboxChange($event)" />
-        </div>
-        <div class="card-content">
-            <h3>{{task.title}}</h3>
-        </div>
-        <div class="card-content-right">
-          <div class="delete-btn">
-
-            <i class="pi pi-trash" style="color: #ef4444; cursor: pointer;" (click)="deleteTask()"></i>
-          </div>
-        </div>
-      </div>
-      <div class="sub-card"></div>
-      <div class="sub-card"></div>
+    <div class="progress-summary" *ngIf="alltasks().length > 0">
+      <span>{{ remainingCount() }} remaining</span>
+      <span class="dot">·</span>
+      <span>{{ completedCount() }} of {{ alltasks().length }} completed</span>
     </div>
 
+    <div class="empty-state" *ngIf="alltasks().length === 0 && !isLoading()">
+      <i class="pi pi-inbox"></i>
+      <p>No tasks yet. Click <strong>Generate Tasks</strong> to get started.</p>
+    </div>
+
+    <div class="card-grid" *ngIf="alltasks().length > 0">
+      <div class="sub-card" *ngFor="let task of alltasks()" [class.completed]="task.isCompleted">
+        <div class="card-content-left">
+          <p-checkbox [(ngModel)]="task.isCompleted" [binary]="true" [disabled]="task.isCompleted" (onChange)="onCheckboxChange(task)" />
+        </div>
+        <div class="card-content">
+          <h3 [class.strikethrough]="task.isCompleted">{{ task.title }}</h3>
+          <div class="task-meta">
+            <span class="badge subject-badge">{{ task.subject }}</span>
+            <span class="badge duration-badge"><i class="pi pi-clock"></i> {{ task.duration }}</span>
+            <span class="badge type-badge">{{ task.type }}</span>
+          </div>
+        </div>
+        <div class="card-content-right">
+          <i class="pi pi-trash delete-icon" (click)="deleteTask(task)"></i>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

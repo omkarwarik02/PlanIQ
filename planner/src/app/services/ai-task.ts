@@ -37,6 +37,14 @@ export class AiTask {
     );
   }
 
+  deleteTask(taskToDelete: any) {
+    const updated = this._tasks()
+      .map(group => ({ ...group, tasks: group.tasks.filter(t => t !== taskToDelete) }))
+      .filter(group => group.tasks.length > 0);
+    this._tasks.set(updated);
+    localStorage.setItem('planiq_tasks', JSON.stringify(updated));
+  }
+
   clearTasks(){
     this._tasks.set([]);
     localStorage.removeItem('planiq_tasks');

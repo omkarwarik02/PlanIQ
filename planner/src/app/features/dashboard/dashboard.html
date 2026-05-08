@@ -53,4 +53,32 @@
          </div>
     </div>
 </div>
+<div class="progress-div" *ngIf="totaltasks() > 0">
+    <div class="progress-card">
+        <div class="progress-header">
+            <div class="progress-title">
+                <i class="pi pi-chart-bar"></i>
+                <h2>Task Progress</h2>
+            </div>
+            <span class="percent-badge">{{ completionPercent() }}% complete</span>
+        </div>
+        <div class="progress-bar-track">
+            <div class="progress-bar-fill" [style.width.%]="completionPercent()"></div>
+        </div>
+        <div class="progress-stats">
+            <div class="progress-stat">
+                <span class="stat-value completed">{{ completedTasks() }}</span>
+                <span class="stat-label">Completed</span>
+            </div>
+            <div class="progress-stat">
+                <span class="stat-value remaining">{{ remainingTasks() }}</span>
+                <span class="stat-label">Remaining</span>
+            </div>
+            <div class="progress-stat">
+                <span class="stat-value total">{{ totaltasks() }}</span>
+                <span class="stat-label">Total</span>
+            </div>
+        </div>
+    </div>
+</div>
 </div>
