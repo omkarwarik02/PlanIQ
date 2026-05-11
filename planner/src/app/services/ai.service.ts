@@ -22,7 +22,7 @@ export class AiService {
       tap(data => {
         const planData = data?.plan || (Array.isArray(data) ? data : []);
         this._plan.set(planData);
-        localStorage.setItem('planiq_plan', JSON.stringify(planData));
+        localStorage.setItem('helio_plan', JSON.stringify(planData));
 
         this.aiUsage.increment();
       }),
@@ -35,12 +35,12 @@ export class AiService {
 
   clearPlan() {
     this._plan.set([]);
-    localStorage.removeItem('planiq_plan');
+    localStorage.removeItem('helio_plan');
   }
 
   private loadFromStorage(): DayPlan[] {
     try {
-      const stored = localStorage.getItem('planiq_plan');
+      const stored = localStorage.getItem('helio_plan');
       if (!stored) return [];
       
       const parsed = JSON.parse(stored);
