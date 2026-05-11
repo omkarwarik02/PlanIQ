@@ -26,7 +26,7 @@ export class AiTask {
           group.tasks.forEach(task => task.isCompleted = false)
         );
         this._tasks.set(taskData);
-        localStorage.setItem('planiq_tasks',JSON.stringify(taskData));
+        localStorage.setItem('helio_tasks',JSON.stringify(taskData));
 
         this.aiUsage.increment();
       }),
@@ -47,7 +47,7 @@ export class AiTask {
       )
     }));
     this._tasks.set(updated);
-    localStorage.setItem('planiq_tasks', JSON.stringify(updated));
+    localStorage.setItem('helio_tasks', JSON.stringify(updated));
   }
 
   deleteTask(taskToDelete: { subject: string; title: string }) {
@@ -60,17 +60,17 @@ export class AiTask {
       }))
       .filter(group => group.tasks.length > 0);
     this._tasks.set(updated);
-    localStorage.setItem('planiq_tasks', JSON.stringify(updated));
+    localStorage.setItem('helio_tasks', JSON.stringify(updated));
   }
 
   clearTasks(){
     this._tasks.set([]);
-    localStorage.removeItem('planiq_tasks');
+    localStorage.removeItem('helio_tasks');
   }
 
   private loadFromStorage():TasksBySubject[]{
     try{
-      const stored = localStorage.getItem('planiq_tasks');
+      const stored = localStorage.getItem('helio_tasks');
       if (!stored) {
         return [];
       }
