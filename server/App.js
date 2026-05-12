@@ -33,6 +33,8 @@ app.use(express.urlencoded({ extended: true }));
 
 const { toNodeHandler } = require("better-auth/node");
 
+app.get("/health", (req, res) => res.json({ status: "ok" }));
+
 app.use("/api/auth", toNodeHandler(auth));
 app.use("/api/subjects", subjectRoutes);
 app.use("/api/subjects-list",subjectRoutes);
