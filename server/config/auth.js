@@ -11,9 +11,7 @@ const trustedOrigins = [
 
 const auth = betterAuth({
     basePath:"/api/auth",
-    trustedOrigins: (origin) =>
-      trustedOrigins.includes(origin) ||
-      /^https:\/\/helio[a-z0-9-]*\.vercel\.app$/.test(origin),
+    trustedOrigins,
   database: mongodbAdapter(client.db()),
   emailAndPassword: {
     enabled: true
