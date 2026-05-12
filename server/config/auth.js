@@ -1,4 +1,5 @@
 const { betterAuth } = require("better-auth");
+const { bearer } = require("better-auth/plugins");
 const { mongodbAdapter } = require("better-auth/adapters/mongodb");
 const { MongoClient } = require("mongodb");
 
@@ -16,7 +17,8 @@ const auth = betterAuth({
   database: mongodbAdapter(client.db()),
   emailAndPassword: {
     enabled: true
-  }
+  },
+  plugins: [bearer()],
 });
 
 module.exports = { auth };
