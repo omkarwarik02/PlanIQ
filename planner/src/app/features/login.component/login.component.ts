@@ -58,8 +58,8 @@ onSubmit() {
     )
     .subscribe({
       next: (res:any) => {
-        console.log("LOGIN RESPONSE:", res);
-        this.userStore.setUser(res.user)
+        if (res.token) localStorage.setItem('helio_token', res.token);
+        this.userStore.setUser(res.user);
         this.router.navigate(['/dashboard']);
       },
       error: (err: any) => {

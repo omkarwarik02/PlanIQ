@@ -15,6 +15,7 @@ export class AuthService {
     return this.http.post(`${this.API}/sign-in/email`,data,{withCredentials:true});
   }
     logout(){
+    localStorage.removeItem('helio_token');
     return this.http.post(
       `${this.API}/sign-out`,
       {},
