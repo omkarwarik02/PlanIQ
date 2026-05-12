@@ -1,5 +1,6 @@
 {
-  "buildCommand": "npx ng build --configuration=production",
+  "installCommand": "npm install",
+  "buildCommand": "npm run build",
   "outputDirectory": "dist/planner/browser",
   "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
 }
