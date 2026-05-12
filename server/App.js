@@ -7,9 +7,20 @@ const subjectRoutes = require("../server/Routes/subjectRoutes");
 const aiRoutes =require("./Routes/aiRoutes");
 const app = express();
 
+const allowedOrigins = [
+  "http://localhost:4200",
+  process.env.FRONTEND_URL,
+].filter(Boolean);
+
 app.use(
   cors({
-    origin: "http://localhost:4200",
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
   }),
 );
