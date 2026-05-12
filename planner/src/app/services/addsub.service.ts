@@ -2,11 +2,12 @@ import { inject, Injectable,signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SubjectModel } from '../interface/subject.model';
 import { tap } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root',
 })
 export class AddsubService {
-  private API_URL = 'http://localhost:3000';
+  private API_URL = environment.apiUrl;
   private http = inject(HttpClient);
 
 

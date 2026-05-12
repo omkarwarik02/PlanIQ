@@ -1,10 +1,11 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../../environments/environment';
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private API = "http://localhost:3000/api/auth";
+  private API = `${environment.apiUrl}/api/auth`;
   private http = inject(HttpClient);
 
   signUp(data:any){

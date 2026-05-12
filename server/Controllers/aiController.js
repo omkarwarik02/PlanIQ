@@ -3,16 +3,24 @@ require("dotenv").config();
 const ai = require("../config/ai");
 const Subject = require("../Models/Subject");
 
+const MODEL = "llama-3.3-70b-versatile";
 
-const generatePlan = async(req,res)=>{
-
-try{
-const subjects = await Subject.find({user:req.user.id}); 
-if(!subjects || subjects.length === 0){
-   return res.status(500).json({message:"No subjects found"});
+async function askGroq(prompt) {
+  const response = await ai.chat.completions.create({
+    model: MODEL,
+    messages: [{ role: "user", content: prompt }],
+  });
+  return response.choices[0].message.content;
 }
 
-const prompt =`You are an academic study planner AI for an app called PlanIQ.
+const generatePlan = async (req, res) => {
+  try {
+    const subjects = await Subject.find({ user: req.user.id });
+    if (!subjects || subjects.length === 0) {
+      return res.status(500).json({ message: "No subjects found" });
+    }
+
+    const prompt = `You are an academic study planner AI for an app called PlanIQ.
 Generate a structured 7-day weekly study plan based on the subjects below.
 Rules:
 - Allocate more time to Hard subjects, less to Easy ones
@@ -36,31 +44,24 @@ Subjects:
 ${subjects.map(s => `- ${s.name} | Difficulty: ${s.difficulty} | Available: ${s.hours} hrs/day`).join("\n")}
 `;
 
-    const response = await ai.models.generateContent({
-        model:"gemini-1.5-flash",
-        contents:prompt
-    });
-    const text = response .text;
-    const clean = text.replace(/```json|```/g,"").trim();
+    const text = await askGroq(prompt);
+    const clean = text.replace(/```json|```/g, "").trim();
     res.json(JSON.parse(clean));
-}catch(err){
-    console.error("generatePlane error:",err.message);
-    res.status(500).json({error:"Failed to generate plan"});
-
-}
+  } catch (err) {
+    console.error("generatePlan error:", err.message);
+    res.status(500).json({ error: "Failed to generate plan" });
+  }
 };
 
-const generateTasks = async(req,res)=>{
-try {
-   console.log("KEY:", process.env.GEMINI_API_KEY); //
+const generateTasks = async (req, res) => {
+  try {
     const subjects = await Subject.find({ user: req.user.id });
 
     if (!subjects || subjects.length === 0) {
       return res.status(400).json({ error: "No subjects found. Please add subjects first." });
     }
 
-    const prompt = `
-You are a study task planner for PlanIQ.
+    const prompt = `You are a study task planner for PlanIQ.
 Generate specific, actionable study tasks for each subject below.
 Each subject should have 3-5 tasks based on its difficulty and available hours.
 
@@ -85,65 +86,40 @@ Subjects:
 ${subjects.map(s => `- ${s.name} | Difficulty: ${s.difficulty} | Available: ${s.hours} hrs/day`).join("\n")}
 `;
 
-    const response = await ai.models.generateContent({
-      model: "gemini-1.5-flash",
-      contents: prompt
-    });
-
-    const text = response.text;
+    const text = await askGroq(prompt);
     const clean = text.replace(/```json|```/g, "").trim();
     res.json(JSON.parse(clean));
-
   } catch (err) {
     console.error("generateTasks error:", err.message);
     res.status(500).json({ error: "Failed to generate tasks" });
   }
-}
+};
 
+const chat = async (req, res) => {
+  const { message } = req.body;
 
-
-const chat = async(req,res)=>{
-  const {message} = req.body;
-
-  if(!message){
-    return res.status(400).json({message:"message is required"});
+  if (!message) {
+    return res.status(400).json({ message: "message is required" });
   }
 
-  //fetch subject using users id
-try{
-  const subjects =await Subject.find({user:req.user.id});
-  const subjectContext = subjects.length?`The Student is currently studying:${subjects.map(s=>s.name).join(",")}.`:"";
+  try {
+    const subjects = await Subject.find({ user: req.user.id });
+    const subjectContext = subjects.length
+      ? `The student is currently studying: ${subjects.map(s => s.name).join(", ")}.`
+      : "";
 
-      const prompt = `
-You are PlanIQ's academic assistant. Help students understand concepts, solve problems, and guide their studies.
+    const prompt = `You are PlanIQ's academic assistant. Help students understand concepts, solve problems, and guide their studies.
 ${subjectContext}
 Be concise, clear, and encouraging. Use simple language.
 
-Student asks: ${message}
-`;
+Student asks: ${message}`;
 
-const response = await ai.models.generateContent({
-  model:"gemini-1.5-flash",
-  contents:prompt
-})
-  
-res.json({reply:response.text})
-}catch(err){
-     console.error("chat error:", err.message);
-    res.status(500).json({ error: "AI chat failed" })
-}
-}
+    const reply = await askGroq(prompt);
+    res.json({ reply });
+  } catch (err) {
+    console.error("chat error:", err.message);
+    res.status(500).json({ error: "AI chat failed" });
+  }
+};
 
-
-
-
-
-
-
-
-
-
-
-
-
-module.exports ={generatePlan,generateTasks,chat}
+module.exports = { generatePlan, generateTasks, chat };

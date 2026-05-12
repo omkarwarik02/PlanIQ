@@ -4,6 +4,7 @@ import { TasksBySubject } from '../interface/task.model';
 import { tap, catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { AiUsage } from './ai-usage';
+import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root',
 })
@@ -11,7 +12,7 @@ export class AiTask {
   private http = inject(HttpClient);
 
   private aiUsage = inject(AiUsage); 
-  private API_URL ='http://localhost:3000/api/ai';
+  private API_URL = `${environment.apiUrl}/api/ai`;
 
   private _tasks = signal<TasksBySubject[]>(this.loadFromStorage());
   readonly tasks = this._tasks.asReadonly();
