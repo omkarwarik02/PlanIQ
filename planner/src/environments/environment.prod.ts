@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://helio-backend.onrender.com',
+  apiUrl: 'https://helio-hlgy.onrender.com',
 };
