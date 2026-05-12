@@ -6,6 +6,7 @@ const client = new MongoClient(process.env.MONGO_URI || "mongodb://127.0.0.1:270
 
 const trustedOrigins = [
   "http://localhost:4200",
+  "https://helio-kohl.vercel.app",
   ...(process.env.FRONTEND_URL ? [process.env.FRONTEND_URL] : []),
 ];
 

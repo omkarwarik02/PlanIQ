@@ -9,6 +9,7 @@ const app = express();
 
 const allowedOrigins = [
   "http://localhost:4200",
+  "https://helio-kohl.vercel.app",
   process.env.FRONTEND_URL,
 ].filter(Boolean);
 
