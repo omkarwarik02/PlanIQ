@@ -12,14 +12,17 @@ const allowedOrigins = [
   process.env.FRONTEND_URL,
 ].filter(Boolean);
 
+const isAllowedOrigin = (origin) =>
+  !origin ||
+  allowedOrigins.includes(origin) ||
+  /^https:\/\/helio[a-z0-9-]*\.vercel\.app$/.test(origin);
+
 app.use(
   cors({
     origin: (origin, callback) => {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
+      isAllowedOrigin(origin)
+        ? callback(null, true)
+        : callback(new Error("Not allowed by CORS"));
     },
     credentials: true,
   }),
