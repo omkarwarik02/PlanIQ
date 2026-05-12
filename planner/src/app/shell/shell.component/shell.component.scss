@@ -52,17 +52,22 @@
 }
 
 .app-name {
-  font-size: 1.25rem;
-  font-weight: 700;
+  font-size: 1.5rem;
+  font-weight: 800;
   margin: 0;
-  color: #0f172a;
+  letter-spacing: -0.03em;
+  background: linear-gradient(135deg, #0066ff, #2f7fe0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .sub-text {
-  font-size: 0.65rem;
+  font-size: 0.6rem;
   font-weight: 600;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.1em;
   color: #94a3b8;
+  text-transform: uppercase;
 }
 
 .sidebar-menu {
